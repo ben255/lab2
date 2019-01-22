@@ -1,0 +1,21 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+entity Adder is
+	port(
+		signal sw1, sw2 : in std_logic_vector(3	downto 0);
+		signal led1 : out std_logic_vector(3 downto 0);
+		btn_add : in std_logic);
+		
+end entity Adder;
+
+architecture adder_rlt of Adder is
+begin
+	process(btn_add)
+	begin
+		if(btn_add = '1') then
+			led1 <= sw1 + sw2;
+		end if;
+	end process;
+end architecture adder_rlt;
