@@ -1,0 +1,28 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use IEEE.std_logic_unsigned.ALL;
+
+entity Multiplex is
+	port(
+			signal input : in std_logic_vector(3 downto 0);
+			signal slct : in std_logic_vector(1 downto 0);
+			signal btn : in std_logic;
+			signal led : out std_logic
+			);
+end entity Multiplex;
+
+architecture multi_rtl of Multiplex is
+begin
+process(slct, input, btn)
+begin
+if btn = '1' then
+	case slct is
+		when "00" => led <= input(0);
+		when "01" => led <= input(1);
+		when "10" => led <= input(2);
+		when "11" => led <= input(3);
+		when others => led <= '0';
+	end case;
+end if;
+end process;
+end architecture multi_rtl;
