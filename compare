@@ -1,0 +1,27 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use IEEE.std_logic_unsigned.ALL;
+
+entity Compare is
+	port(
+			signal x_one : in std_logic_vector(3 downto 0);
+			signal x_two : in std_logic_vector(3 downto 0);
+			signal led : out std_logic_vector(2 downto 0);
+			signal btn : in std_logic);
+end entity Compare;
+
+architecture comp_rtl of Compare is
+begin
+process(btn)
+begin
+	if rising_edge(btn) then
+		if x_one < x_two then
+			led <= "001";
+		elsif x_one > x_two then
+			led <= "100";
+		elsif x_one = x_two then
+			led <= "010";
+		end if;
+	end if;
+end process;
+end architecture comp_rtl;
